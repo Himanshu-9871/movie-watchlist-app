@@ -132,3 +132,126 @@ register controller
 database
 ```
 --------
+
+# Jwt authentication 
+
+This package is responsible for:
+
+Create token → jwt.sign()
+Verify token → jwt.verify()
+
+```
+const authMiddleware = (req, res, next) => {
+  try {
+
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({
+        message: "No token provided"
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
+
+    req.user = decoded;
+
+    next();
+
+  } catch (error) {
+    return res.status(401).json({
+      message: "Invalid token"
+    });
+  }
+};
+```
+
+next in the parameter 
+Authentication successful,
+continue to the next function."
+```
+Request
+ ↓
+Auth Middleware
+ ↓
+next()
+ ↓
+Controller
+ ↓
+Response
+```
+
+without this request hangs forever
+
+# Understanding split()
+
+Current string:
+
+``Bearer abc123xyz``
+
+Split by space:
+
+authHeader.split(" ")
+
+Result:
+
+["Bearer", "abc123xyz"]
+
+Index:
+
+[0] => "Bearer"
+[1] => "abc123xyz"
+
+
+--------
+
+`` router.use(authMiddleware); ``  in watchlistRoutes 
+## What happens without middleware?
+
+Imagine:
+
+router.get("/", getWatchlist);
+
+Anyone can call:
+
+GET /api/watchlist
+
+Even without logging in.
+
+Bad ❌
+
+***What happens with middleware?***
+
+Flow becomes:
+
+Request
+ ↓
+authMiddleware
+ ↓
+Controller
+
+
+```
+GET /api/watchlist
+
+↓
+
+authMiddleware
+
+checks token.
+
+If token valid:
+
+next();
+
+↓
+
+getWatchlist()
+
+runs.
+```

@@ -7,6 +7,8 @@ const db = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
 
+const watchListRoutes = require("./routes/watchListRoutes");
+
 const app = express();   //this creates server object
 
 //Now what this app can do go to the documentation of notes.md
@@ -20,6 +22,9 @@ app.use("/api/auth",authRoutes);
 app.get("/",(req,res)=>{
     res.send("API is Running")  //this is just a simple check when browser visits the website 
 });
+
+app.use("/api/watchlist",watchListRoutes);
+
 
 // app.post("/test",(req,res)=>{
 //     console.log("TEST HIT");
