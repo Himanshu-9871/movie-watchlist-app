@@ -13,6 +13,7 @@ const register = async(req,res) =>{
         
         async(err,result)=>{
             if(err){
+                
                 console.log(err);
                 return res.status(500).json(err);
             }
@@ -29,6 +30,7 @@ const register = async(req,res) =>{
                 (err,result)=>{
                     if(err)
                     {
+                        console.log("User Not registerd");
                         return res.status(500).json(err)
                     }
                     res.status(201).json({
@@ -86,7 +88,8 @@ const login = async(req,res)=>{
                     id : user.id,
                     name : user.name,
                     email : user.email
-                }
+                },
+                message:"Login Successfull✅"
             });
         }
     );
