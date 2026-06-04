@@ -13,7 +13,16 @@ const app = express();   //this creates server object
 
 //Now what this app can do go to the documentation of notes.md
 
-app.use(cors());   //register cors middleware allow req from frontend
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://movie-watchlist-app-khaki.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+);   //register cors middleware allow req from frontend
 
 app.use(express.json());   //registr json middleware see docum
 
