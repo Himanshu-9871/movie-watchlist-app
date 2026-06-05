@@ -24,6 +24,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
+app.options("*", cors());
+console.log("CORS configured successfully");
 app.use(express.json());   //registr json middleware see docum
 
 app.use("/api/auth",authRoutes);
