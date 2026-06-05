@@ -13,20 +13,12 @@ const app = express();   //this creates server object
 
 //Now what this app can do go to the documentation of notes.md
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://movie-watchlist-app-khaki.vercel.app",
-  "https://movie-watchlist-0sred71n-himanshu-9871s-projects.vercel.app"
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      callback(new Error("Not allowed by CORS"));
-    },
+    origin: [
+      "http://localhost:5173",
+      "https://movie-watchlist-app-khaki.vercel.app"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
