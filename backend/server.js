@@ -20,11 +20,10 @@ app.use(
       "https://movie-watchlist-app-khaki.vercel.app",
       "https://movie-watchlist-o0sred71n-himanshu-9871s-projects.vercel.app"
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    credentials: true
   })
 );
-app.options("*", cors());
+
 console.log("CORS configured successfully");
 app.use(express.json());   //registr json middleware see docum
 
