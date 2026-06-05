@@ -18,7 +18,11 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://movie-watchlist-app-khaki.vercel.app",
-      "https://movie-watchlist-o0sred71n-himanshu-9871s-projects.vercel.app"
+      "https://movie-watchlist-o0sred71n-himanshu-9871s-projects.vercel.app",
+      "https://movie-watchlist-app-git-main-himanshu-9871s-projects.vercel.app/",
+      "https://movie-watchlist-app-x40r.onrender.com",
+      "https://movie-watchlist-app-x40r.onrender.com/api",
+      "https://movie-watchlist-app-x40r.onrender.com/api/auth/register"
     ],
     credentials: true
   })
