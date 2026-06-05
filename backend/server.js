@@ -17,13 +17,13 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://movie-watchlist-app-khaki.vercel.app"
+      "https://movie-watchlist-app-khaki.vercel.app",
+      "https://movie-watchlist-o0sred71n-himanshu-9871s-projects.vercel.app"
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
-);   //register cors middleware allow req from frontend
-
+);
 app.use(express.json());   //registr json middleware see docum
 
 app.use("/api/auth",authRoutes);
